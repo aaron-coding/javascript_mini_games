@@ -1,28 +1,28 @@
 origin = new Date();
 
 
-function Clock () {
+function Clock() {
 
 }
 
-Clock.TICK = 5000;
+Clock.TICK = 1000;
 
 Clock.prototype.printTime = function () {
   console.log(this.hours + ":" + this.minutes + ":" + this.seconds);
 }
 
-Clock.prototype.run = function() {
+Clock.prototype.run = function () {
   this.currentTime = new Date();
   this.hours = this.currentTime.getHours();
   this.minutes = this.currentTime.getMinutes();
   this.seconds = this.currentTime.getSeconds();
 
   this.printTime();
-  setInterval(this._tick.bind(this), 5000);
+  setInterval(this._tick.bind(this), 1000);
 }
 
 Clock.prototype._tick = function () {
-  this.seconds += 5
+  this.seconds += 1
   if (this.seconds >= 60) {
     this.minutes += 1;
     this.seconds -= 60;
