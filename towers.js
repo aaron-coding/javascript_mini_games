@@ -10,7 +10,7 @@ function HanoiGame() {
 };
 
 HanoiGame.prototype.isWon = function () {
-  if (stack[0].length === 0 && (stack[1].length === 3 || stack[2].length === 3)) {
+  if (this.stacks[0].length === 0 && (this.stacks[1].length === 3 || this.stacks[2].length === 3)) {
     return true;
   } else {
     return false;
@@ -18,17 +18,24 @@ HanoiGame.prototype.isWon = function () {
 }
 
 HanoiGame.prototype.isValidMove = function (start, end) {
-  fromDisk = this.stacks[start][this.stacks[start].length - 1];
-  toDisk = this.stacks[end][this.stacks[end].length - 1];
+  if ((start > -1 && start < 3) && (end > -1 && end < 3)) {
+    fromDisk = this.stacks[start][this.stacks[start].length - 1];
+    toDisk = this.stacks[end][this.stacks[end].length - 1];
 
-  if (fromDisk == undefined ) {
-    return false;
-  }
+    if (fromDisk == undefined ) {
+      console.log("WAT!")
+      return false;
+    }
 
-  if (fromDisk > toDisk) {
-    return false;
+    if (fromDisk > toDisk) {
+      console.log("Too big yo!")
+      return false;
+    } else {
+      return true;
+    }
   } else {
-    return true;
+    console.log("Error: undefined is not a function.");
+    return false;
   }
 };
 
@@ -48,20 +55,32 @@ HanoiGame.prototype.print = function () {
 }
 
 HanoiGame.prototype.promptMove = function (callback) {
-  this.print();
   reader.question("Enter a tower to move from:", function (fromTower) {
      reader.question("Enter a tower to move to:", function (toTower) {
         var from = parseInt(fromTower);
         var to = parseInt(toTower);
         this.move(from, to);
-        this.promptMove();
+        this.run(callback);
       }.bind(this));
   }.bind(this));
 
 }
 
-// HanoiGame.prototype.run = function (completion)
+var congrats = function () {
+  console.log("Nice job.")
+  reader.close();
+}
+
+
+HanoiGame.prototype.run = function (completionCallback) {
+  this.print();
+  if (this.isWon()) {
+    completionCallback();
+  } else {
+    this.promptMove(completionCallback);
+    // this.run();
+  }
+}
 
 h = new HanoiGame();
-h.promptMove();
-h.print();
+h.run(congrats);
