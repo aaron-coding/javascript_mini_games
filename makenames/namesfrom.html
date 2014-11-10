@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Game of Thrones Names</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="./namesfrom.js"></script>
+  </head>
+  <body> 
+
+    <div id="name"></div>
+    <h2>Names from Game of Thrones
+    </h2>
+    <button>Make name</button>
+    <div id="first_name" class="name"><span></span></div>
+  <script>
+    $( "button:first" ).click(function() {
+      newName( $( "div#first_name" ) );
+    });  
+  </script>
+</body>
+</html>
