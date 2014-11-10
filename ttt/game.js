@@ -1,13 +1,9 @@
 Board = require("./board");
-
-
 var readline = require('readline');
 var reader = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-
-
 
 function Game() {
   this.playerX = "x",
@@ -26,7 +22,6 @@ Game.prototype.run = function (completionCallback) {
     var swap = (this.currentPlayer === this.playerX) ? this.playerO : this.playerX;
     this.currentPlayer = swap;
   }
-  
 };
 
 Game.prototype.promptMove = function(player, completionCallback) {
@@ -41,12 +36,12 @@ Game.prototype.promptMove = function(player, completionCallback) {
   }.bind(this));
 };
 
-var congrats = function () {
+module.exports = Game;
+
+var congrats = function () { //completion callback with which to run Game.run
   console.log("Nice job.");
   reader.close();
 };
 
-var g = new Game;
-
+g = new Game();
 g.run(congrats);
-
