@@ -1,1 +1,1 @@
-This is Tic-Tac-Toe created for the browser.
+This is Tic-Tac-Toe created for the browser. Play [here](https://rawgit.com/aaron-coding/javascript_mini_games/master/tic-tac-toe-browser/skeleton/html/index.html).
